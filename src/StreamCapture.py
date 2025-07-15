@@ -140,7 +140,7 @@ class RTSPStreamCapture:
         self.draw_boxes(frame,response)
     
 
-    def draw_boxes(self, frame, boxes, color=(0, 0, 255)):
+    def draw_boxes(self, frame, boxes):
         '''Desenha caixas delimitadoras e rótulos no frame fornecido para indicar violações detectadas de EPI (Equipamento de Proteção Individual).
         Caixas delimitadoras para pessoas detectadas são desenhadas com linhas sólidas vermelhas ou verdes, dependendo da conformidade com o EPI. Para cada item de EPI ausente, um retângulo tracejado com cantos sólidos é desenhado ao redor da região relevante, e um rótulo indicando o item ausente é adicionado. Se qualquer violação de EPI for detectada, o frame anotado é salvo no diretório './ocorrencias' com um nome de arquivo baseado em timestamp.
         Args:
@@ -149,7 +149,8 @@ class RTSPStreamCapture:
             color (tuple, opcional): A cor BGR para desenhar as caixas e rótulos de violação. Padrão é (0, 0, 255) (vermelho).
         Retorna:
             None'''
-        
+        vermelho = (0, 0, 255)
+        verde = (0, 255, 0)
         ppe_name = {0:'Capacete', 1:'Veste', 2:'Oculos', 3:'Luvas', 4:'Calcados'}
         copy = frame.copy()
         no_ppe = False
@@ -196,14 +197,14 @@ class RTSPStreamCapture:
                     no_ppe = True
                     person = True
                     x1, y1, x2, y2 = ppe[2]
-                    draw_line(copy, (x1, y1), (x2, y2), color=color)
+                    draw_line(copy, (x1, y1), (x2, y2), color=vermelho)
                     txt =  f'Nao Usando {ppe_name[i]}'
                     copy = cv2.putText(copy, txt, (x1, y1+40), cv2.FONT_HERSHEY_SIMPLEX, fontScale=1.5, color=color, thickness=2)
             if person:
-                cv2.rectangle(copy, (xp1, yp1), (xp2, yp2), color=(0,0,255), thickness=10)
+                cv2.rectangle(copy, (xp1, yp1), (xp2, yp2), color=vermelho, thickness=10)
                 person = False
             else:
-                cv2.rectangle(copy, (xp1, yp1), (xp2, yp2), color=(0,255,0), thickness=10)
+                cv2.rectangle(copy, (xp1, yp1), (xp2, yp2), color=verde, thickness=10)
         
         if no_ppe or not no_ppe:
             ocorrencias_dir = Path('./ocorrencias')
