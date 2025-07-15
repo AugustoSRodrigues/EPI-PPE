@@ -2,7 +2,19 @@
 
 ## Intro
 
-Este projeto tem como objetivo detectar automaticamente, por meio de visão computacional, o uso correto de Equipamentos de Proteção Individual (EPI) em ambientes industriais ou de construção. Utilizando modelos de deep learning, o sistema processa vídeos ou imagens e identifica se as pessoas estão utilizando os EPIs obrigatórios, como capacete, colete e outros itens de segurança.
+Este projeto tem como objetivo detectar automaticamente, por meio de visão computacional, o uso correto de Equipamentos de Proteção Individual (EPI) em ambientes industriais ou de construção. Utilizando modelos de deep learning, o sistema processa vídeos ou imagens e identifica se as pessoas estão utilizando os EPIs obrigatórios.
+
+O modelo foi treinado com um dataset próprio, composto por imagens coletadas em cenários reais de uso de EPIs.
+
+Atualmente, o sistema é capaz de detectar os seguintes itens de segurança:
+
+- Capacete
+- Colete
+- Óculos de proteção
+- Luvas
+- Botas
+
+Novos tipos de EPI podem ser adicionados conforme a evolução do projeto.
 
 ## Exibição
 
