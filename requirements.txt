@@ -1,0 +1,6 @@
+opencv-python
+numpy
+requests
+torch
+ultralytics
+Pillow
